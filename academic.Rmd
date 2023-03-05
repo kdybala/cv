@@ -1,17 +1,17 @@
 ---
+title: "Kristen E. Dybala"
 output:
-  pagedown::html_paged:
-    number_sections: false
-    css: ["academic_cv.css"]
-links-to-footnotes: false
-knit: pagedown::chrome_print
+  html_document:
+    css: website-cv.css
+    toc: true
+    toc_float: true
 ---
 
-<style>
-:root{
-  --last-updated: "\00a0 \00a0 \00a0 \00a0 Last updated: `r format(Sys.Date(), '%B, %Y')`";
-}
-</style>
+<!-- <style> -->
+<!-- :root{ -->
+<!--   --last-updated: "\00a0 \00a0 \00a0 \00a0 Last updated: `r format(Sys.Date(), '%B, %Y')`"; -->
+<!-- } -->
+<!-- </style> -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -36,22 +36,9 @@ publications_formatted <- publications |>
 
 ```
 
-::: {.title-and-contact}
-
-:::::: {.title}
-<h1 class="title">Kristen E. Dybala</h1>
-::::::
-
-:::::: {.contact-info}
-kdybala@pointblue.org<br>
-(707) 781-2555 x421
-::::::
-
-:::
-
 ::: {.cv-entries}
 
-## EDUCATION
+# EDUCATION
 ```{r}
 cv_entries_formatted |> 
   filter(type == 'education') |> 
@@ -61,17 +48,17 @@ cv_entries_formatted |>
   kable()
 ```
 
-## PROFESSIONAL APPOINTMENTS
+# PROFESSIONAL APPOINTMENTS
 ```{r}
 cv_entries_formatted |>  
   filter(type == 'appointments') |> 
   mutate(entry = glue("{role}, {where}")) |> 
   arrange(desc(date)) |>
   select(date_range, entry) |> 
-  kable()
+  kable(escape = FALSE)
 ```
 
-## PUBLICATIONS
+# PUBLICATIONS
 ```{r}
 publications_formatted |>
   filter(type == "publication") |> 
@@ -101,7 +88,7 @@ publications_formatted |>
   knitr::kable()
 ```
 
-## SELECT WHITE PAPERS & TECHNICAL REPORTS 
+## Select White Papers
 ```{r}
 publications_formatted |>
   filter(type == "report") |> 
@@ -126,7 +113,7 @@ publications_formatted |>
 <!-- <br class="pageBreak"> -->
 
 
-## RESEARCH GRANTS
+# RESEARCH GRANTS
 ```{r}
 cv_entries_formatted |>
   filter(type == 'grants') |>
@@ -136,7 +123,9 @@ cv_entries_formatted |>
   kable()
 ```
 
-## ORGANIZED SYMPOSIA 
+# PRESENTATIONS
+
+## Organized Symposia
 
 ```{r}
 publications_formatted |>
@@ -174,7 +163,7 @@ publications_formatted |>
 
 ```
 
-## SELECT INVITED PRESENTATIONS
+## Select Invited Presentations
 
 ```{r}
 publications_formatted |>
@@ -188,7 +177,7 @@ publications_formatted |>
   knitr::kable()
 ```
 
-## SELECT CONFERENCE PRESENTATIONS
+## Select Conference Presentations
 
 ```{r}
 publications_formatted |>
@@ -204,7 +193,7 @@ publications_formatted |>
 ```
 <!-- <br class="pageBreak"> -->
 
-## SERVICE
+# SERVICE
 ```{r}
 cv_entries_formatted |>
   filter(type == 'service') |>
